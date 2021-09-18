@@ -1,0 +1,37 @@
+PODS:
+  - Flutter (1.0.0)
+  - um_verify_flutter (0.0.1):
+    - Flutter
+    - UMVerify
+  - UMCommon (7.3.5):
+    - UMDevice
+  - UMDevice (2.0.5)
+  - UMVerify (2.4.0):
+    - UMCommon
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - um_verify_flutter (from `.symlinks/plugins/um_verify_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - UMCommon
+    - UMDevice
+    - UMVerify
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  um_verify_flutter:
+    :path: ".symlinks/plugins/um_verify_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  um_verify_flutter: 772cf94513752ab0c956b63e854bf9e2fe1b272e
+  UMCommon: ab4d875ddefe1b06c60b577e4a58bc4d433ee067
+  UMDevice: c13bbb2e8ca6c67d1e23e03162553e3ec5a8b5b0
+  UMVerify: aad2bbf40276f6b3522942c2012f5f03edfeaa41
+
+PODFILE CHECKSUM: 8e679eca47255a8ca8067c4c67aab20e64cb974d
+
+COCOAPODS: 1.10.2

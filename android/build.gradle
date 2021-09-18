@@ -1,0 +1,44 @@
+group 'com.ahd.um_verify_flutter'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://repo1.maven.org/maven2/' }
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://repo1.maven.org/maven2/' }
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+
+    dependencies {
+        implementation 'com.umeng.umsdk:common:9.3.8'// 必选
+        implementation 'com.umeng.umsdk:asms:1.2.3'// 必选
+        implementation 'com.umeng.umsdk:uverify:2.5.1'// 必选
+        implementation 'com.umeng.umsdk:uverify-main:2.0.3'// 必选
+        implementation 'com.umeng.umsdk:uverify-logger:2.0.3'// 必选
+        implementation 'com.umeng.umsdk:uverify-crashshield:2.0.3'// 必选
+        implementation 'com.android.support:appcompat-v7:27.1.1'
+        implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+        implementation 'com.github.bumptech.glide:glide:4.9.0'
+    }
+}
