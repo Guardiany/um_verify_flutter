@@ -45,7 +45,6 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
     channel.setMethodCallHandler(this);
     context = flutterPluginBinding.getApplicationContext();
     UmFlutterEvent.getInstance().onAttachedToEngine(flutterPluginBinding);
-    UMConfigure.preInit(context, "6143169c517ed7102050a281", "NORMAL:CSJ");
   }
 
   @Override
@@ -62,6 +61,7 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
         String appkey = call.argument("androidApKey");
         String channel = call.argument("androidChannel");
 
+        UMConfigure.preInit(context, appkey, channel);
         UMConfigure.init(context, appkey, channel, UMConfigure.DEVICE_TYPE_PHONE, null);
 
         verifyHelper = UMVerifyHelper.getInstance(context, resultListener);
