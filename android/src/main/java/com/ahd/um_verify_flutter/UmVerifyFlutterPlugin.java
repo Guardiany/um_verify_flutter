@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
 import com.umeng.umverify.UMResultCode;
 import com.umeng.umverify.UMVerifyHelper;
@@ -44,6 +45,7 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
     channel.setMethodCallHandler(this);
     context = flutterPluginBinding.getApplicationContext();
     UmFlutterEvent.getInstance().onAttachedToEngine(flutterPluginBinding);
+    UMConfigure.preInit(context, "6143169c517ed7102050a281", "NORMAL:CSJ");
   }
 
   @Override
@@ -58,7 +60,9 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
         break;
       case "initWithAppkey":
         String appkey = call.argument("androidApKey");
-        UMConfigure.init(context, appkey, "", UMConfigure.DEVICE_TYPE_PHONE, null);
+        String channel = call.argument("androidChannel");
+
+        UMConfigure.init(context, appkey, channel, UMConfigure.DEVICE_TYPE_PHONE, null);
 
         verifyHelper = UMVerifyHelper.getInstance(context, resultListener);
         verifyHelper.setUIClickListener(uiControlClickListener);
@@ -95,6 +99,11 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
         verifyHelper.setUIClickListener(uiControlClickListener);
         login(call, result);
         break;
+      case "onEventObject":
+        String eventID = call.argument("eventID");
+        Map<String, Object> map = call.argument("map");
+        MobclickAgent.onEventObject(context, eventID, map);
+        break;
       default:
         result.notImplemented();
         break;
@@ -113,9 +122,9 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("token", tokenRet.getToken());
         UmFlutterEvent.getInstance().sendEvent(resultMap);
-        release();
         verifyHelper.hideLoginLoading();
         verifyHelper.quitLoginPage();
+        release();
       }
     }
 
@@ -201,6 +210,7 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
     verifyHelper.setUIClickListener(null);
     verifyHelper.removeAuthRegisterViewConfig();
     verifyHelper.removeAuthRegisterXmlConfig();
+    verifyHelper = null;
   }
 
   @Override

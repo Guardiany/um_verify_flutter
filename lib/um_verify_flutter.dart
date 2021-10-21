@@ -171,6 +171,17 @@ class UmVerifyFlutter {
     return resultEntity;
   }
 
+  ///友盟统计自定义事件
+  static void onEventObject({
+    required String eventId,
+    Map<String, dynamic> map = const {},
+  }) {
+    _channel.invokeMethod('onEventObject', {
+      'eventID': eventId,
+      'map': map,
+    });
+  }
+
   static void releaseVerifyStream() {
     if (_eventStream != null) {
       _eventStream?.cancel();

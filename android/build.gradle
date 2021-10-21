@@ -30,6 +30,12 @@ android {
         minSdkVersion 16
     }
 
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
     dependencies {
         implementation 'com.umeng.umsdk:common:9.3.8'// 必选
         implementation 'com.umeng.umsdk:asms:1.2.3'// 必选

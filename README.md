@@ -74,5 +74,9 @@ await UmVerifyFlutter.getLoginToken(
 UmVerifyFlutter.releaseVerifyStream();
 ```
 
-## 联系方式
-* Email: 1204493146@qq.com
+#### 3、自定义统计事件
+```Dart
+UmVerifyFlutter.onEventObject(eventId: 'eventId', map: {
+  'userID': 'userID'
+});
+```
