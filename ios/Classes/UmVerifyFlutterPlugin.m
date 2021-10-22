@@ -1,6 +1,7 @@
 #import "UmVerifyFlutterPlugin.h"
 #import <UMCommon/UMCommon.h>
 #import <UMVerify/UMVerify.h>
+#import <UMCommon/MobClick.h>
 #import "UmFlutterEvent.h"
 
 UmFlutterEvent *umEvent;
@@ -48,9 +49,20 @@ UmFlutterEvent *umEvent;
     else if ([@"getLoginToken" isEqualToString:call.method]) {
         [self getLoginToken:result call:call];
     }
+    else if ([@"onEventObject" isEqualToString:call.method]) {
+        [self onEventObject:result call:call];
+    }
     else {
         result(FlutterMethodNotImplemented);
     }
+}
+
+- (void)onEventObject:(FlutterResult)result call:(FlutterMethodCall*)call {
+    NSDictionary *map = call.arguments;
+    NSString *eventID = [map valueForKey:@"eventID"];
+    NSDictionary *dic = [map valueForKey:@"map"];
+    [MobClick event:eventID attributes:dic];
+    result(nil);
 }
 
 - (void)getLoginToken:(FlutterResult)result call:(FlutterMethodCall*)call {
