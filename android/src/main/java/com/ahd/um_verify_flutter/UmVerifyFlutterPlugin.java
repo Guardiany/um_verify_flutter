@@ -64,12 +64,12 @@ public class UmVerifyFlutterPlugin implements FlutterPlugin, MethodCallHandler, 
         UMConfigure.preInit(context, appkey, channel);
         UMConfigure.init(context, appkey, channel, UMConfigure.DEVICE_TYPE_PHONE, null);
 
-        verifyHelper = UMVerifyHelper.getInstance(context, resultListener);
-        verifyHelper.setUIClickListener(uiControlClickListener);
         result.success(null);
         break;
       case "setVerifySDKInfo":
         String secret = call.argument("androidSecret");
+        verifyHelper = UMVerifyHelper.getInstance(context, resultListener);
+        verifyHelper.setUIClickListener(uiControlClickListener);
         verifyHelper.setAuthSDKInfo(secret);
         resultMap.put("resultCode", "600000");
         result.success(resultMap);
