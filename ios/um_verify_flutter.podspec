@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'um_verify_flutter'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'A new Flutter project.'
   s.description      = <<-DESC
 A new Flutter project.
@@ -18,6 +18,7 @@ A new Flutter project.
   s.dependency 'Flutter'
   s.platform = :ios, '9.0'
   s.dependency 'UMVerify'
+  s.dependency 'UMAPM'
   s.static_framework = true
 
   # Flutter.framework does not contain a i386 slice.
